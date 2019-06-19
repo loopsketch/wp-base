@@ -34,6 +34,16 @@ PMA_PASSWORD=作成したユーザのパスワード(MYSQL_PASSWORDと同じ)
 - `http://localhost:8080`にアクセスすると、phpmyadminに接続出来る。
 - `mysql -h 127.0.0.1 -P 33060 -u DBユーザ名 -p`でmysqlコマンドでDBに接続出来る。
 - なんとなくバックエンドとして動作することを想定しているので、各ポートが外部に出ないようにご注意ください。
+- memcachedを使う場合、wp-config.phpの次のあたりで、下記のようにサーバを起動しておきます。
+```
+define('WP_DEBUG', true);
+ :
+// Cache all the things \
+global $memcached_servers;
+$memcached_servers = [ ['memcached', '11211'] ];
+define( 'WP_CACHE', false ); // not use wp-content/advanced-cache.php
+```
+
 
 ## Licence
 - [MIT](https://github.com/loopsketch/wp-base/blob/master/LICENSE.txt)
